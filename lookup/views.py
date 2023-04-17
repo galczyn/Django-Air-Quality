@@ -1,5 +1,7 @@
-from django.shortcuts import render
+#views.py file
 
+from django.shortcuts import render
+from . import views
 
 def home(request):
 	return render(request, 'home.html', {})
