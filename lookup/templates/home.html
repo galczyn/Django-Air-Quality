@@ -1,9 +1,24 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
 
-<h1>hello world</h1>
+<h1>Stacje pomiarowe</h1>
+{% for station in api.stations %}
+    <h2>{{ station.stationName }}</h2>
+    <ul>
+        {% for sensor in air_quality_data %}
+            {% if sensor.stationId == station.id %}
+                {% for value in sensor.values %}
+                    {% if value.param.paramName == "PM10" %}
+                        <li>PM10: {{ value.value }} {{ value.param.paramCode }}</li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+
+{{air_quality_data}}
 
 {% endblock %}
-
