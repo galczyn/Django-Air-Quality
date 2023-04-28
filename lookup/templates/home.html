@@ -3,22 +3,23 @@
 {% block content %}
 
 <h1>Stacje pomiarowe</h1>
-{% for station in api.stations %}
+{% for station in stations %}
     <h2>{{ station.stationName }}</h2>
-    <ul>
-        {% for sensor in air_quality_data %}
-            {% if sensor.stationId == station.id %}
-                {% for value in sensor.values %}
-                    {% if value.param.paramName == "PM10" %}
-                        <li>PM10: {{ value.value }} {{ value.param.paramCode }}</li>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+    <div>
+        {% for sensors in air_quality_data %}
+            
+            {% for sensor in sensors %}
+                {% if sensor.stationId == station.id %}
+                    <!-- {% if value.param.paramName == "PM10" %} -->
+                        <!-- <li>PM10: {{ value.value }} {{ value.param.paramCode }}</li> -->
+                        <p>{{sensor}}</p>
+                    <!-- {% endif %} -->
+               
+                {% endif %}
+            {% endfor %}
         {% endfor %}
-    </ul>
-{% endfor %}
+    </div>
+{% endfor %}  
 
-
-{{air_quality_data}}
 
 {% endblock %}
