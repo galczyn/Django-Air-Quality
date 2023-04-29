@@ -1,7 +1,7 @@
 import requests
 import json
 from django.core.management.base import BaseCommand
-from myapp.models import Station
+from lookup.models import Station
 
 class Command(BaseCommand):
     help = "Populate stations table with data from API."
